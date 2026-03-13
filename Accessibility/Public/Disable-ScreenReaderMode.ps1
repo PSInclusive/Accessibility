@@ -27,7 +27,14 @@ function Disable-ScreenReaderMode {
     param ()
 
     $script:ScreenReaderMode = $false
-    $PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::Ansi
 
-    Write-Verbose "Screen reader mode disabled. ANSI output restored."
+    if ($script:PreviousOutputRendering) {
+        $PSStyle.OutputRendering = $script:PreviousOutputRendering
+        Write-Verbose "Screen reader mode disabled. Previous output rendering restored."
+    }
+    else {
+        # Fallback if no previous output rendering mode was saved.
+        $PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::Host
+        Write-Verbose "Screen reader mode disabled. Output rendering set to Host."
+    }
 }

@@ -70,9 +70,20 @@ function Set-ColorBlindProfile {
         Write-Verbose "Applied $ProfileType color profile to current session."
 
         if ($Persist) {
-            $invocation = "`nSet-ColorBlindProfile -ProfileType $ProfileType"
-            Add-Content -Path $PROFILE -Value $invocation
-            Write-Verbose "Saved $ProfileType profile to `$PROFILE: $PROFILE"
+            $invocation = "Set-ColorBlindProfile -ProfileType $ProfileType"
+            $profileDir = Split-Path -Path $PROFILE -Parent
+            if (-not (Test-Path -LiteralPath $profileDir)) {
+                New-Item -Path $profileDir -ItemType Directory -Force | Out-Null
+            }
+
+            $profileContent = if (Test-Path -LiteralPath $PROFILE) { Get-Content -LiteralPath $PROFILE } else { @() }
+            if ($profileContent -notcontains $invocation) {
+                Add-Content -LiteralPath $PROFILE -Value "`n$invocation"
+                Write-Verbose "Saved $ProfileType profile to `$PROFILE: $PROFILE"
+            }
+            else {
+                Write-Verbose "Profile `$PROFILE already contains invocation for $ProfileType; skipping persist."
+            }
         }
     }
 }

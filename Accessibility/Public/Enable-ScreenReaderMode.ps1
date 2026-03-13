@@ -29,6 +29,11 @@ function Enable-ScreenReaderMode {
     param ()
 
     $script:ScreenReaderMode = $true
+
+    if (-not (Get-Variable -Name PreviousOutputRendering -Scope Script -ErrorAction SilentlyContinue)) {
+        $script:PreviousOutputRendering = $PSStyle.OutputRendering
+    }
+
     $PSStyle.OutputRendering = [System.Management.Automation.OutputRendering]::PlainText
 
     Write-Verbose "Screen reader mode enabled. ANSI output suppressed."

@@ -39,14 +39,14 @@ function Get-ColorBlindPaletteData {
             # Red-green deficiency (most common). Maximize blue/orange/yellow contrast.
             # Red and green are shifted to orange and blue respectively.
             @{
-                Error     = @{ R = 213; G = 94;  B = 0   }  # Vermillion (not red)
-                Warning   = @{ R = 230; G = 159; B = 0   }  # Orange
-                Success   = @{ R = 0;   G = 114; B = 178 }  # Blue (not green)
-                Info      = @{ R = 86;  G = 180; B = 233 }  # Sky Blue
-                Highlight = @{ R = 240; G = 228; B = 66  }  # Yellow
-                Accent    = @{ R = 204; G = 121; B = 167 }  # Reddish Purple
-                Text      = @{ R = 0;   G = 0;   B = 0   }  # Black
-                Muted     = @{ R = 120; G = 120; B = 120 }  # Mid-gray
+                Error     = $script:OKABE_ITO.Vermillion     # Vermillion (not red)
+                Warning   = $script:OKABE_ITO.Orange         # Orange
+                Success   = $script:OKABE_ITO.Blue           # Blue (not green)
+                Info      = $script:OKABE_ITO.SkyBlue        # Sky Blue
+                Highlight = $script:OKABE_ITO.Yellow         # Yellow
+                Accent    = $script:OKABE_ITO.ReddishPurple  # Reddish Purple
+                Text      = $script:OKABE_ITO.Black          # Black
+                Muted     = @{ R = 120; G = 120; B = 120 }   # Mid-gray (not part of Okabe-Ito)
             }
         }
         'Protanopia' {
@@ -76,7 +76,7 @@ function Get-ColorBlindPaletteData {
             }
         }
         'Achromatopsia' {
-            # Full colorblindness. Grayscale ladder with minimum 7:1 WCAG AAA contrast steps.
+            # Full colorblindness. High-contrast grayscale ladder designed for strong separation between steps.
             @{
                 Error     = @{ R = 30;  G = 30;  B = 30  }  # Near-black (on white bg)
                 Warning   = @{ R = 80;  G = 80;  B = 80  }  # Dark gray

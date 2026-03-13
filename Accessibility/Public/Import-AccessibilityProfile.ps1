@@ -31,12 +31,18 @@ function Import-AccessibilityProfile {
         [string]$Path
     )
 
-    if (-not (Test-Path $Path)) {
-        Write-Error "Settings file not found: $Path"
+    if (-not (Test-Path -Path $Path -PathType Leaf)) {
+        Write-Error "Settings file not found or is not a file: $Path"
         return
     }
 
-    $settings = Get-Content -Path $Path -Raw | ConvertFrom-Json
+    try {
+        $jsonContent = Get-Content -Path $Path -Raw -ErrorAction Stop
+        $settings = $jsonContent | ConvertFrom-Json -ErrorAction Stop
+    } catch {
+        Write-Error "Failed to read or parse accessibility settings file as valid JSON: $Path. $_"
+        return
+    }
 
     if ($PSCmdlet.ShouldProcess($Path, "Import and apply accessibility settings")) {
         if ($settings.ColorBlindProfile) {

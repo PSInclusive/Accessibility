@@ -37,10 +37,12 @@ function Test-ColorContrast {
     param (
         [Parameter(Mandatory = $true)]
         [ValidateCount(3, 3)]
+        [ValidateRange(0, 255)]
         [int[]]$Foreground,
 
         [Parameter(Mandatory = $true)]
         [ValidateCount(3, 3)]
+        [ValidateRange(0, 255)]
         [int[]]$Background
     )
 
