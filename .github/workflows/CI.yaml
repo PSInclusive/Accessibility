@@ -5,6 +5,9 @@ on:
 permissions:
   checks: write
   pull-requests: write
+  contents: read
+  issues: write
 jobs:
   ci:
+    name: Continuous Integration
     uses: PSInclusive/.github/.github/workflows/ModuleCI.yml@main
