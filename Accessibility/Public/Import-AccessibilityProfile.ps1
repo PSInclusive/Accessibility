@@ -55,6 +55,12 @@ function Import-AccessibilityProfile {
             Disable-ScreenReaderMode
         }
 
+        if ($settings.AccessibleErrorView -eq $true) {
+            Enable-AccessibleErrorView
+        } elseif ($settings.AccessibleErrorView -eq $false) {
+            Disable-AccessibleErrorView
+        }
+
         Write-Verbose "Accessibility settings imported from: $Path"
     }
 }

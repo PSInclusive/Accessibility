@@ -24,12 +24,13 @@ function Reset-ColorProfile {
     param ()
 
     if ($PSCmdlet.ShouldProcess("terminal color scheme", "Reset to PowerShell defaults")) {
-        $PSStyle.Formatting.Error          = $PSStyle.Foreground.Red
-        $PSStyle.Formatting.Warning        = $PSStyle.Foreground.Yellow
-        $PSStyle.Formatting.Verbose        = $PSStyle.Foreground.Cyan
-        $PSStyle.Formatting.Debug          = $PSStyle.Foreground.Yellow
-        $PSStyle.Formatting.TableHeader    = "$($PSStyle.Bold)$($PSStyle.Foreground.White)"
-        $PSStyle.Formatting.CustomTableRow = ''
+        $PSStyle.Formatting.Error        = $PSStyle.Foreground.Red
+        $PSStyle.Formatting.Warning      = $PSStyle.Foreground.Yellow
+        $PSStyle.Formatting.Verbose      = $PSStyle.Foreground.Cyan
+        $PSStyle.Formatting.Debug        = $PSStyle.Foreground.Yellow
+        $PSStyle.Formatting.TableHeader  = "$($PSStyle.Bold)$($PSStyle.Foreground.White)"
+        $PSStyle.Formatting.FormatAccent = "$($PSStyle.Italic)$($PSStyle.Foreground.BrightCyan)"
+        $PSStyle.Formatting.ErrorAccent  = "$($PSStyle.Italic)$($PSStyle.Foreground.Cyan)"
 
         $script:ActiveColorProfile = $null
 

@@ -58,12 +58,13 @@ function Set-ColorBlindProfile {
     $palette = Get-ColorBlindPaletteData -ProfileType $ProfileType
 
     if ($PSCmdlet.ShouldProcess("terminal color scheme", "Apply $ProfileType profile")) {
-        $PSStyle.Formatting.Error          = $PSStyle.Foreground.FromRgb($palette.Error.R,     $palette.Error.G,     $palette.Error.B)
-        $PSStyle.Formatting.Warning        = $PSStyle.Foreground.FromRgb($palette.Warning.R,   $palette.Warning.G,   $palette.Warning.B)
-        $PSStyle.Formatting.Verbose        = $PSStyle.Foreground.FromRgb($palette.Info.R,      $palette.Info.G,      $palette.Info.B)
-        $PSStyle.Formatting.Debug          = $PSStyle.Foreground.FromRgb($palette.Muted.R,     $palette.Muted.G,     $palette.Muted.B)
-        $PSStyle.Formatting.TableHeader    = $PSStyle.Foreground.FromRgb($palette.Accent.R,    $palette.Accent.G,    $palette.Accent.B)
-        $PSStyle.Formatting.CustomTableRow = $PSStyle.Foreground.FromRgb($palette.Text.R,      $palette.Text.G,      $palette.Text.B)
+        $PSStyle.Formatting.Error       = $PSStyle.Foreground.FromRgb($palette.Error.R,       $palette.Error.G,       $palette.Error.B)
+        $PSStyle.Formatting.Warning     = $PSStyle.Foreground.FromRgb($palette.Warning.R,     $palette.Warning.G,     $palette.Warning.B)
+        $PSStyle.Formatting.Verbose     = $PSStyle.Foreground.FromRgb($palette.Info.R,        $palette.Info.G,        $palette.Info.B)
+        $PSStyle.Formatting.Debug       = $PSStyle.Foreground.FromRgb($palette.Muted.R,       $palette.Muted.G,       $palette.Muted.B)
+        $PSStyle.Formatting.TableHeader = $PSStyle.Foreground.FromRgb($palette.Accent.R,      $palette.Accent.G,      $palette.Accent.B)
+        $PSStyle.Formatting.FormatAccent = $PSStyle.Foreground.FromRgb($palette.Accent.R,     $palette.Accent.G,      $palette.Accent.B)
+        $PSStyle.Formatting.ErrorAccent  = $PSStyle.Foreground.FromRgb($palette.Muted.R,      $palette.Muted.G,       $palette.Muted.B)
 
         $script:ActiveColorProfile = $ProfileType
 

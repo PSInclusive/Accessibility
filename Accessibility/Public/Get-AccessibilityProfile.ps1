@@ -27,8 +27,9 @@ function Get-AccessibilityProfile {
     param ()
 
     [PSCustomObject]@{
-        ColorBlindProfile = $script:ActiveColorProfile
-        ScreenReaderMode  = [bool]$script:ScreenReaderMode
-        OutputRendering   = $PSStyle.OutputRendering.ToString()
+        ColorBlindProfile  = $script:ActiveColorProfile
+        ScreenReaderMode   = [bool]$script:ScreenReaderMode
+        OutputRendering    = $PSStyle.OutputRendering.ToString()
+        AccessibleErrorView = ($global:ErrorView -eq 'Accessible')
     }
 }
